@@ -176,7 +176,12 @@ def runTraining(opts):
     
     # Define HyperDenseNet
     # To-Do. Get as input the config settings to create different networks
-    liviaNet = LiviaNet(num_classes)
+    if (opts.network == 'liviaNet'):
+        print('.... Building LiviaNET architecture....')
+        liviaNet = LiviaNet(num_classes)
+    else:
+        print('.... Building SemiDenseNet architecture....')
+        liviaNet = LiviaSemiDenseNet(num_classes)
 
     '''try:
         hdNet = torch.load(os.path.join(model_name, "Best_" + model_name + ".pkl"))
@@ -279,6 +284,7 @@ if __name__ == '__main__':
     parser.add_argument('--root_dir', type=str, default='./Data/MRBrainS/DataNii/', help='directory containing the train and val folders')
     parser.add_argument('--save_dir', type=str, default='./Results/', help='directory ot save results')
     parser.add_argument('--modelName', type=str, default='liviaNet', help='name of the model')
+    parser.add_argument('--network', type=str, default='liviaNet', choices=['liviaNet','SemiDenseNet'],help='network to employ')
     parser.add_argument('--numClasses', type=int, default=4, help='Number of classes (Including background)')
     parser.add_argument('--numSamplesEpoch', type=int, default=1000, help='Number of samples per epoch')
     parser.add_argument('--numEpochs', type=int, default=500, help='Number of epochs')
