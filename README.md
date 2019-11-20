@@ -39,7 +39,7 @@ If you use this code in your research, please consider citing the following pape
 
 - Dolz, Jose, Christian Desrosiers, and Ismail Ben Ayed. "3D fully convolutional networks for subcortical segmentation in MRI: A large-scale study." NeuroImage 170 (2018): 456-470.
 
-If in addition you use the semiDenseNet architecture, please consider citing these two paper:
+If in addition you use the semiDenseNet architecture, please consider citing these two papers:
 
 - [1] Dolz J, Desrosiers C, Wang L, Yuan J, Shen D, Ayed IB. Deep CNN ensembles and suggestive annotations for infant brain MRI segmentation. Computerized Medical Imaging and Graphics. 2019 Nov 15:101660.
 
