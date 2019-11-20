@@ -46,6 +46,6 @@ Dolz J, Desrosiers C, Wang L, Yuan J, Shen D, Ayed IB. Deep CNN ensembles and su
 Carass A, Cuzzocreo JL, Han S, Hernandez-Castillo CR, Rasser PE, Ganz M, Beliveau V, Dolz J, Ayed IB, Desrosiers C, Thyreau B. Comparing fully automated state-of-the-art cerebellum parcellation from magnetic resonance images. NeuroImage. 2018 Dec 1;183:150-72.
 
 ### Design of the semiDenseNet architecture
-![model](images/semiDenseNet)
+![model](images/semiDenseNet.png)
 
 # LiviaNet_pytorch
