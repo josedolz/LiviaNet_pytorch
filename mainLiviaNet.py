@@ -113,9 +113,26 @@ def inference(network, moda_1, moda_g, imageNames, epoch, folder_save):
     return dscAll
         
 def runTraining(opts):
-    print('-' * 40)
+    print('' * 41)
+    print('~' * 50)
+    print('~~~~~~~~~~~~~~~~~  PARAMETERS ~~~~~~~~~~~~~~~~')
+    print('~' * 50)
+    print('  - Number of classes: {}'.format(opts.numClasses))
+    print('  - Directory to load images: {}'.format(opts.root_dir))
+    print('  - Directory to save results: {}'.format(opts.save_dir))
+    print('  - To model will be saved as : {}'.format(opts.modelName))
+    print('-' * 41)
+    print('  - Number of epochs: {}'.format(opts.numClasses))
+    print('  - Batch size: {}'.format(opts.batchSize))
+    print('  - Number of samples per epoch: {}'.format(opts.numSamplesEpoch))
+    print('  - Learning rate: {}'.format(opts.l_rate))
+    print('  - Perform validation each {} epochs'.format(opts.freq_inference))
+    print('' * 41)
+
+    print('-' * 41)
     print('~~~~~~~~  Starting the training... ~~~~~~')
-    print('-' * 40)
+    print('-' * 41)
+    print('' * 40)
 
     samplesPerEpoch = opts.numSamplesEpoch
     batch_size = opts.batchSize
@@ -234,7 +251,7 @@ def runTraining(opts):
 
         print(' Epoch: {}, loss: {}'.format(e_i,np.mean(lossEpoch)))
 
-        if (e_i%10)==0:
+        if (e_i%opts.freq_inference)==0:
             dsc = inference(liviaNet,moda_1_val, moda_g_val, imageNames_val,e_i, opts.save_dir)
             dscAll.append(dsc)
             print(' Metrics: DSC(mean): {} per class: 1({}) 2({}) 3({})'.format(np.mean(dsc),np.mean(dsc[:,0]),np.mean(dsc[:,1]),np.mean(dsc[:,2])))
@@ -252,6 +269,7 @@ def runTraining(opts):
 
         if (100+e_i%20)==0:
              lr = lr/2
+             print(' Learning rate decreased to : {}'.format(lr))
              for param_group in optimizer.param_groups:
                 param_group['lr'] = lr
                         
@@ -265,6 +283,8 @@ if __name__ == '__main__':
     parser.add_argument('--numSamplesEpoch', type=int, default=1000, help='Number of samples per epoch')
     parser.add_argument('--numEpochs', type=int, default=500, help='Number of epochs')
     parser.add_argument('--batchSize', type=int, default=10, help='Batch size')
+    parser.add_argument('--l_rate', type=float, default=0.0002, help='Learning rate')
+    parser.add_argument('--freq_inference', type=int, default=10, help='Frequency to do the inference on the validation set (i.e., number of epochs between validations)')
 
     opts = parser.parse_args()
     print(opts)

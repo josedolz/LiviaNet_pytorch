@@ -56,7 +56,7 @@ class LiviaNet(nn.Module):
         self.conv8_Top = convBlock(75, 75, batchNorm = True)
         self.conv9_Top = convBlock(75, 75, batchNorm = True)
 
-        self.fully_1 = nn.Conv3d(225, 400, kernel_size=1)
+        self.fully_1 = nn.Conv3d(150, 400, kernel_size=1)
         self.fully_2 = nn.Conv3d(400, 100, kernel_size=1)
         self.final = nn.Conv3d(100, nClasses, kernel_size=1)
         
@@ -76,7 +76,7 @@ class LiviaNet(nn.Module):
         y_3_cropped = croppCenter(y_3,y_9.shape)
         y_6_cropped = croppCenter(y_6,y_9.shape)
 
-        y = self.fully_1(torch.cat((y_3_cropped, y_6_cropped, y9), dim=1))
+        y = self.fully_1(torch.cat((y_3_cropped, y_6_cropped, y_9), dim=1))
         y = self.fully_2(y)
         
         return self.final(y)
