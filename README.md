@@ -34,6 +34,9 @@ python mainLiviaNet.py
 --network liviaNet  o  --network SemiDenseNet
 ```
 - Patch size, and sampling steps values are hard-coded. We will work on a generalization of this, allowing the user to decide the input patch size and the frequence to sample the patches.
+- TO-DO: 
+-- Include data augmentation step.
+-- Add a function to generate a mask (ROI) so that 1) isolated areas outside the brain can be removed and 2) sampling strategy can be improved. So far, it uniformly samples patches across the whole volume. If a mask or ROI is given, sampling will focus only on those regions inside the mask.
 
 If you use this code in your research, please consider citing the following paper:
 
